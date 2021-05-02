@@ -17,8 +17,6 @@ async function scrapePage(i, search) {
   return rows;
 }
 (async function () {
-  const sheet = new Sheet();
-  await sheet.load();
   let i = 1;
   let rows = [];
   while (true) {
@@ -30,7 +28,7 @@ async function scrapePage(i, search) {
     rows = rows.concat(newRows);
     i++;
   }
-  const Sheet = new Sheet();
-  await Sheet.load();
-  await Sheet.addRows(rows);
+  const sheet = new Sheet();
+  await sheet.load();
+  await sheet.addRows(rows);
 })();
