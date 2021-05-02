@@ -21,14 +21,14 @@ async function scrapePage(i, search) {
   let rows = [];
   while (true) {
     const newRows = await scrapePage(i, "code");
-    console.log("rows processed", rows.length);
+    console.log("rows processed:", rows.length);
     if (newRows.length === 0) {
       break;
     }
     rows = rows.concat(newRows);
     i++;
   }
-  console.log("total rows length", rows.length);
+  console.log("total rows length:", rows.length);
   const sheet = new Sheet();
   await sheet.load();
   await sheet.addRows(rows);
