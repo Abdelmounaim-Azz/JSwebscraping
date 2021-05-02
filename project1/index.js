@@ -1,8 +1,8 @@
 const Sheet = require("./utils/Sheet");
 const fetch = require("node-fetch");
-(async function () {
+async function scrapePage(i, search) {
   const jobs = await fetch(
-    "https://jobs.github.com/positions.json?location=remote"
+    `https://jobs.github.com/positions.json?page=${i}&search=${search}`
   );
   const res = await jobs.json();
   const rows = res.map((job) => {
@@ -14,7 +14,21 @@ const fetch = require("node-fetch");
       createdAt: job.created_at,
     };
   });
+  return rows;
+}
+(async function () {
   const sheet = new Sheet();
   await sheet.load();
-  await sheet.addRows(rows);
+  let i = 1;
+  let rows = [];
+  while (true) {
+    const newRows = await scrapePage(i, "code");
+    console.log("rows processed", rows.length);
+    if (newRows.length === 0) {
+      break;
+    }
+    rows = rows.concat(newRows);
+    i++;
+  }
+  console.log("total rows", rows);
 })();
