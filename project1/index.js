@@ -5,5 +5,6 @@ const fetch = require("node-fetch");
   await sheet.load();
   await sheet.addRows([{title: "added", location: "now"}]);
   const jobs = await fetch("https://jobs.github.com/positions.json");
-  console.log(jobs);
+  const res = await jobs.json();
+  console.log(res);
 })();
