@@ -12,5 +12,10 @@ const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_URL);
 
   await doc.loadInfo(); // loads document properties and worksheets
   console.log(doc.title);
-  await doc.updateProperties({title: "renamed doc"});
+  await doc.updateProperties({title: "renamed document"});
+  const sheet = doc.sheetsByIndex[0];
+  const moreRows = await sheet.addRows([
+    {title: "hooray", location: "nowhere"},
+    {name: "hooroy", email: "hooroy"},
+  ]);
 })();
