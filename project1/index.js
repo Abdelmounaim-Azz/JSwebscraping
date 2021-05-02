@@ -16,6 +16,5 @@ const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_URL);
   const sheet = doc.sheetsByIndex[0];
   const moreRows = await sheet.addRows([
     {title: "hooray", location: "nowhere"},
-    {name: "hooroy", email: "hooroy"},
   ]);
 })();
