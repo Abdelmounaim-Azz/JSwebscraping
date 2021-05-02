@@ -30,5 +30,7 @@ async function scrapePage(i, search) {
     rows = rows.concat(newRows);
     i++;
   }
-  console.log("total rows", rows);
+  const Sheet = new Sheet();
+  await Sheet.load();
+  await Sheet.addRows(rows);
 })();
