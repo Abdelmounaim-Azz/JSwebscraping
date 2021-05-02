@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 (async function () {
   const sheet = new Sheet();
   await sheet.load();
-  await sheet.addRows([{title: "hooray", location: "nowhere"}]);
-  const jobs = fetch("https://jobs.github.com/positions.json");
-  console.log(jobs[0]);
+  await sheet.addRows([{title: "added", location: "now"}]);
+  const jobs = await fetch("https://jobs.github.com/positions.json");
+  console.log(jobs);
 })();
