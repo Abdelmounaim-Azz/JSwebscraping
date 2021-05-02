@@ -28,6 +28,7 @@ async function scrapePage(i, search) {
     rows = rows.concat(newRows);
     i++;
   }
+  console.log("total rows length", rows.length);
   const sheet = new Sheet();
   await sheet.load();
   await sheet.addRows(rows);
