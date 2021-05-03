@@ -10,11 +10,13 @@ const Twitter = require("twitter");
   });
   const sheet = new Sheet();
   await sheet.load();
-  const rows = await sheet.getRows();
-  const status = rows[0].quote;
+  const quotes = await sheet.getRows();
+  const status = quotes[0].quotes;
   client.post("statuses/update", {status}, function (error, tweet, response) {
     if (error) throw error;
     console.log(tweet); // Tweet body.
     console.log(response); // Raw response object.
   });
+  await quotes[0].delete();
+  console.log("tweeted", quotes[0].quote);
 })();
