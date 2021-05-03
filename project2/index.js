@@ -11,5 +11,10 @@ const Twitter = require("twitter");
   const sheet = new Sheet();
   await sheet.load();
   const rows = await sheet.getRows();
-  console.log(rows[0].quote);
+  const status = rows[0].quote;
+  client.post("statuses/update", {status}, function (error, tweet, response) {
+    if (error) throw error;
+    console.log(tweet); // Tweet body.
+    console.log(response); // Raw response object.
+  });
 })();
