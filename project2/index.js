@@ -11,5 +11,5 @@ const Twitter = require("twitter");
   const sheet = new Sheet();
   await sheet.load();
   const rows = await sheet.getRows();
-  console.log(rows);
+  console.log(rows[0].quote);
 })();
