@@ -11,10 +11,12 @@ const cheerio = require("cheerio");
     const title = trendDoc.find(".tileKeyword").text();
     const desc = trendDoc.find(".tileDescription").text();
     const SearchMonth = trendDoc.find(".scoreTagItem").text();
+    const Growth = SearchMonth.split(" ");
     return {
       title,
       desc,
       SearchMonth,
+      Growth,
     };
   });
   console.log(topics);
