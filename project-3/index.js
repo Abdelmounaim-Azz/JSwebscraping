@@ -2,5 +2,6 @@ const fetch = require("node-fetch");
 
 (async function () {
   const data = await fetch("https://news.ycombinator.com/");
-  console.log(data);
+  const res = await data.text();
+  console.log({res});
 })();
