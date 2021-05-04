@@ -20,5 +20,24 @@ const Twitter = require("twitter");
     });
     await quotes[0].delete();
     console.log("tweeted", quotes[0].quote);
+    // var stream = client.stream("statuses/filter", {track: "javascript"});
+    // stream.on("data", function (event) {
+    //   console.log(event && event.text);
+    // });
+
+    // stream.on("error", function (error) {
+    //   throw error;
+    // });
+
+    // var params = {screen_name: "BotPeters"};
+    // client.get(
+    //   "statuses/user_timeline",
+    //   params,
+    //   function (error, tweets, response) {
+    //     if (!error) {
+    //       console.log(tweets);
+    //     }
+    //   }
+    // );
   })();
 })();
