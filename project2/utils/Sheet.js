@@ -1,4 +1,5 @@
 const {GoogleSpreadsheet} = require("google-spreadsheet");
+const _ = require("lodash");
 require("dotenv").config();
 module.exports = class Sheet {
   constructor() {
@@ -7,7 +8,11 @@ module.exports = class Sheet {
   async load() {
     await this.doc.useServiceAccountAuth({
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY,
+      private_key: _.replace(
+        process.env.GOOGLE_PRIVATE_KEY,
+        new RegExp("\\\\n", "g"),
+        "\n"
+      ),
     });
 
     await this.doc.loadInfo();
