@@ -10,7 +10,7 @@ const cheerio = require("cheerio");
     const trendDoc = $(trend);
     const title = trendDoc.find(".tileKeyword").text();
     const desc = trendDoc.find(".tileDescription").text();
-    const SearchMonth = trendDoc.find("scoreTag").first().text();
+    const SearchMonth = trendDoc.find(".scoreTagItem").text();
     return {
       title,
       desc,
