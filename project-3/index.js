@@ -18,6 +18,7 @@ const Sheet = require("./utils/Sheet");
   await sheet.load();
   await sheet.addRows(topics);
 })();
+
 async function scrapePage(i, category) {
   const options = {
     xmlMode: true,
@@ -52,4 +53,5 @@ async function scrapePage(i, category) {
       Growth,
     };
   });
+  return topics;
 }
