@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const htmlparser2 = require("htmlparser2");
+const Sheet = require("./utils/Sheet");
 
 (async function () {
   const options = {
@@ -30,5 +31,7 @@ const htmlparser2 = require("htmlparser2");
       SearchGrowth,
     };
   });
-  console.log(topics);
+  const sheet = new Sheet();
+  await sheet.load();
+  await sheet.addRows(topics);
 })();
