@@ -7,11 +7,15 @@ const url =
   const page = await browser.newPage();
   await page.goto(url);
   //expand all comment threads
-  const expandsBtns = await page.$$(".morecomments");
-  for (let button of expandsBtns) {
-    await button.click();
-    await page.waitForTimeout(300);
+  let expandsBtns = await page.$$(".morecomments");
+  while (expandsBtns.length) {
+    for (let button of expandsBtns) {
+      await button.click();
+      await page.waitForTimeout(300);
+    }
+    expandsBtns = await page.$$(".morecomments");
   }
+
   //select all cmnts and scrape text+point
   //sort cmnts by points
   //insert into google-spreadsheet
