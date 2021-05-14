@@ -2,19 +2,19 @@ const puppeteer = require("puppeteer");
 const url =
   "https://old.reddit.com/r/learnprogramming/comments/4q6tae/i_highly_recommend_harvards_free_online_2016_cs50/";
 (async function () {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
   // expand all comment threads
-  let expandsBtns = await page.$$(".morecomments");
-  while (expandsBtns.length) {
-    for (let button of expandsBtns) {
-      await button.click();
-      await page.waitForTimeout(300);
-    }
-    await page.waitForTimeout(1000);
-    expandsBtns = await page.$$(".morecomments");
-  }
+  // let expandsBtns = await page.$$(".morecomments");
+  // while (expandsBtns.length) {
+  //   for (let button of expandsBtns) {
+  //     await button.click();
+  //     await page.waitForTimeout(300);
+  //   }
+  //   await page.waitForTimeout(1000);
+  //   expandsBtns = await page.$$(".morecomments");
+  // }
 
   //select all cmnts and scrape text+point
   const entryCmnts = await page.$$(".entry");
@@ -43,7 +43,7 @@ const url =
     pB = Number(b.points.split(" ")[0]);
     return pB - pA;
   });
-
+  console.log(filterEmtyCmnts.slice(0, 10));
   //insert into google-spreadsheet
   await browser.close();
 })();
