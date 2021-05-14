@@ -12,18 +12,19 @@ const url =
       await button.click();
       await page.waitForTimeout(300);
     }
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     expandsBtns = await page.$$(".morecomments");
   }
 
   //select all cmnts and scrape text+point
   const entryCmnts = await page.$$(".entry");
+  let formattedCmnts = [];
   for (let entry of entryCmnts) {
     //points
     const points = await entry
       .$eval(".score", (el) => el.textContent)
       .catch((err) => {});
-    const formattedCmnts = [];
+
     const rawComment = await entry
       .$eval(".usertext-body", (el) => el.textContent)
       .catch((err) => {});
@@ -33,7 +34,11 @@ const url =
       formattedCmnts.push({points, comment});
     }
   }
+  const filterEmtyCmnts = formattedCmnts.filter(function (el) {
+    return el != "" && el != null;
+  });
+  console.log({filterEmtyCmnts});
   //sort cmnts by points
   //insert into google-spreadsheet
-  // await browser.close();
+  await browser.close();
 })();
