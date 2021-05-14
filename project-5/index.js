@@ -8,7 +8,9 @@ const url =
   await page.goto(url);
   //expand all comment threads
   const expandsBtns = await page.$$(".morecomments");
-  console.log(expandsBtns);
+  for (let button of expandsBtns) {
+    await button.click();
+  }
   //select all cmnts and scrape text+point
   //sort cmnts by points
   //insert into google-spreadsheet
