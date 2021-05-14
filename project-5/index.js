@@ -14,5 +14,5 @@ const url =
   //select all cmnts and scrape text+point
   //sort cmnts by points
   //insert into google-spreadsheet
-  // await browser.close();
+  await browser.close();
 })();
