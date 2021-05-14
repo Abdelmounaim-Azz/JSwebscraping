@@ -10,9 +10,10 @@ const url =
   const expandsBtns = await page.$$(".morecomments");
   for (let button of expandsBtns) {
     await button.click();
+    await page.waitForTimeout(300);
   }
   //select all cmnts and scrape text+point
   //sort cmnts by points
   //insert into google-spreadsheet
-  await browser.close();
+  // await browser.close();
 })();
