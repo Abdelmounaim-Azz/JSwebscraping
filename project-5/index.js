@@ -37,8 +37,13 @@ const url =
   const filterEmtyCmnts = formattedCmnts.filter(function (el) {
     return el != "" && el != null;
   });
-  console.log({filterEmtyCmnts});
   //sort cmnts by points
+  filterEmtyCmnts.sort((a, b) => {
+    pA = Number(a.points.split(" ")[0]);
+    pB = Number(b.points.split(" ")[0]);
+    return pB - pA;
+  });
+
   //insert into google-spreadsheet
   await browser.close();
 })();
