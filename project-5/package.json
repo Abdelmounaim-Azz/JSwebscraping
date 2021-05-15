@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^9.0.2",
     "google-spreadsheet": "^3.1.15",
     "puppeteer": "^9.1.1"
   }
