@@ -11,17 +11,20 @@ const url =
   const sheet = new Sheet();
   await sheet.load();
   const title = await page.$eval(".title a", (el) => el.textContent);
-  const sheetIdx = await sheet.addSheet(title.slice(0, 99));
+  const sheetIdx = await sheet.addSheet(title.slice(0, 99), [
+    "points",
+    "comment",
+  ]);
   // expand all comment threads
-  // let expandsBtns = await page.$$(".morecomments");
-  // while (expandsBtns.length) {
-  //   for (let button of expandsBtns) {
-  //     await button.click();
-  //     await page.waitForTimeout(300);
-  //   }
-  //   await page.waitForTimeout(1000);
-  //   expandsBtns = await page.$$(".morecomments");
-  // }
+  let expandsBtns = await page.$$(".morecomments");
+  while (expandsBtns.length) {
+    for (let button of expandsBtns) {
+      await button.click();
+      await page.waitForTimeout(300);
+    }
+    await page.waitForTimeout(1000);
+    expandsBtns = await page.$$(".morecomments");
+  }
 
   //select all cmnts and scrape text+point
   const entryCmnts = await page.$$(".entry");
