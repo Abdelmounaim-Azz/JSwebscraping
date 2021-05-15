@@ -10,8 +10,8 @@ const url =
   //create sheet with title
   const sheet = new Sheet();
   await sheet.load();
-  const title = page.$eval(".title a", (el) => el.textContent);
-  const sheetIdx = await sheet.addSheet(title);
+  const title = await page.$eval(".title a", (el) => el.textContent);
+  const sheetIdx = await sheet.addSheet(title.slice(0, 99));
   // expand all comment threads
   // let expandsBtns = await page.$$(".morecomments");
   // while (expandsBtns.length) {
