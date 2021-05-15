@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-(async () => {
+(async function () {
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   await page.goto("https://instagram.com");
