@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const Sheet = require("./utils/Sheet");
-const sheet = require("./utils/Sheet");
 const url =
   "https://old.reddit.com/r/learnprogramming/comments/4q6tae/i_highly_recommend_harvards_free_online_2016_cs50/";
 (async function () {
