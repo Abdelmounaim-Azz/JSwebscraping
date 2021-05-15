@@ -17,6 +17,11 @@ module.exports = class Sheet {
 
     await this.doc.loadInfo();
   }
+  async addSheet(title) {
+    await doc.addSheet({title});
+    //last sheet created
+    return this.doc.sheetsByIndex.length - 1;
+  }
   async addRows(rows, i) {
     const sheet = this.doc.sheetsByIndex[i];
     await sheet.addRows(rows);
