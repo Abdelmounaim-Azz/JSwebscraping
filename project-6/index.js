@@ -18,7 +18,19 @@ const USERNAME = "azz.sahafrica";
     await page.goto(`https://instagram.com/${profile}`);
     await page.waitForSelector("img");
     const avatar = await page.$eval("img", (el) => el.getAttribute("src"));
-    console.log({avatar});
+    const posts = await page.$eval(
+      "header li:nth-child(1)",
+      (el) => el.textContent
+    );
+    const followers = await page.$eval(
+      "header li:nth-child(2)",
+      (el) => el.textContent
+    );
+    const following = await page.$eval(
+      "header li:nth-child(3)",
+      (el) => el.textContent
+    );
+    console.log(posts, followers, following);
   }
 
   // await browser.close();
