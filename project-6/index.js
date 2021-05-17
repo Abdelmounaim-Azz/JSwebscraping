@@ -33,7 +33,7 @@ const USERNAME = "azz.sahafrica";
       .$eval("header h1", (el) => el.textContent)
       .catch((err) => {});
     const description = await page
-      .$eval("header span:nth-child(3)", (el) => el.textContent)
+      .$eval(".-vDIg span", (el) => el.textContent)
       .catch((err) => {});
 
     let personalLink = await page
