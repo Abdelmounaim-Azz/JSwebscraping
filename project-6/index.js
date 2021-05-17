@@ -17,24 +17,24 @@ const USERNAME = "azz.sahafrica";
   for (let PROFILE of PROFILES) {
     await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
-    const avatar = await page.$eval("img", (el) => el.getAttribute("src"));
-    const posts = await page.$eval(
-      "header li:nth-child(1)",
-      (el) => el.textContent
-    );
-    const followers = await page.$eval(
-      "header li:nth-child(2)",
-      (el) => el.textContent
-    );
-    const following = await page.$eval(
-      "header li:nth-child(3)",
-      (el) => el.textContent
-    );
-    const name = await page.$eval("header h1", (el) => el.textContent);
-    const description = await page.$eval(
-      "header span:nth-child(3)",
-      (el) => el.textContent
-    );
+    const avatar = await page
+      .$eval("img", (el) => el.getAttribute("src"))
+      .catch((err) => {});
+    const posts = await page
+      .$eval("header li:nth-child(1)", (el) => el.textContent)
+      .catch((err) => {});
+    const followers = await page
+      .$eval("header li:nth-child(2)", (el) => el.textContent)
+      .catch((err) => {});
+    const following = await page
+      .$eval("header li:nth-child(3)", (el) => el.textContent)
+      .catch((err) => {});
+    const name = await page
+      .$eval("header h1", (el) => el.textContent)
+      .catch((err) => {});
+    const description = await page
+      .$eval("header span:nth-child(3)", (el) => el.textContent)
+      .catch((err) => {});
 
     let personalLink = await page
       .$eval(".-vDIg > a:last-child", (el) => el.textContent)
