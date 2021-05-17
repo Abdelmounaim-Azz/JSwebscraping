@@ -13,7 +13,7 @@ const USERNAME = "azz.sahafrica";
   const loginBtn = await page.$x(
     "/html/body/div[2]/section/main/article/div[2]/div[1]/div/form/div/div[3]"
   );
-  loginBtn.click();
+  loginBtn[0].click();
 
   // await browser.close();
 })();
