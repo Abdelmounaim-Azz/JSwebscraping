@@ -16,7 +16,7 @@ const USERNAME = "azz.sahafrica";
   await page.goto(`https://instagram.com/${process.env.PROFILE}`);
   await page.waitForSelector("article a");
   await (await page.$("article a")).click();
-  await page.waitForNavigation();
+  await page.waitForTimeout(1000);
   await (await page.$$("button")[2]).click();
   // await browser.close();
 })();
