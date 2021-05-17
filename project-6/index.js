@@ -16,7 +16,7 @@ const USERNAME = "azz.sahafrica";
   await page.waitForNavigation();
   for (let profile of PROFILES) {
     await page.goto(`https://instagram.com/${profile}`);
-    await page.waitForNavigation();
+    await page.waitForSelector("img");
     const avatar = await page.$eval("img", (el) => el.getAttribute("src"));
     console.log({avatar});
   }
