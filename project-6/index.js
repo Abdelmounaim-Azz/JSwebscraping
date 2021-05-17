@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 require("dotenv").config();
 const USERNAME = "azz.sahafrica";
 (async function () {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch();
   const PROFILES = ["rosenamajunas"];
   const page = await browser.newPage();
   await page.goto("https://instagram.com");
