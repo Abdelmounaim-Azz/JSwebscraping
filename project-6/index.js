@@ -2,8 +2,7 @@ const puppeteer = require("puppeteer");
 require("dotenv").config();
 const USERNAME = "azz.sahafrica";
 (async function () {
-  const browser = await puppeteer.launch();
-  const PROFILES = ["rosenamajunas"];
+  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   await page.goto("https://instagram.com");
   await page.waitForSelector("input");
@@ -12,10 +11,11 @@ const USERNAME = "azz.sahafrica";
   await inputs[1].type(process.env.PASSWORD);
   const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
   await loginBtn.click();
+  const PROFILES = ["rosenamajunas", "jakepaul"];
   //wait for page loading
   await page.waitForNavigation();
-  for (let profile of PROFILES) {
-    await page.goto(`https://instagram.com/${profile}`);
+  for (let PROFILE of PROFILES) {
+    await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
     const avatar = await page.$eval("img", (el) => el.getAttribute("src"));
     const posts = await page.$eval(
@@ -35,7 +35,22 @@ const USERNAME = "azz.sahafrica";
       "header span:nth-child(3)",
       (el) => el.textContent
     );
-    console.log(avatar, posts, followers, following, name, description);
+    try {
+      let personalLink = await page.$eval(
+        ".-vDIg > a:last-child",
+        (el) => el.textContent
+      );
+      const profile = {
+        name,
+        avatar,
+        posts,
+        following,
+        followers,
+        description,
+        personalLink,
+      };
+      console.log({profile});
+    } catch (error) {}
   }
 
   // await browser.close();
