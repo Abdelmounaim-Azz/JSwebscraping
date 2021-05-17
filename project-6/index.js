@@ -11,9 +11,12 @@ const USERNAME = "azz.sahafrica";
   await inputs[1].type(process.env.PASSWORD);
   const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
   await loginBtn.click();
-  await page.waitForTimeout(3000);
+  //wait for page loading
+  await page.waitForNavigation();
   await page.goto(`https://instagram.com/${process.env.PROFILE}`);
+  await page.waitForSelector("article a");
   await (await page.$("article a")).click();
+  await page.waitForNavigation();
   await (await page.$$("button")[2]).click();
   // await browser.close();
 })();
