@@ -35,22 +35,20 @@ const USERNAME = "azz.sahafrica";
       "header span:nth-child(3)",
       (el) => el.textContent
     );
-    try {
-      let personalLink = await page.$eval(
-        ".-vDIg > a:last-child",
-        (el) => el.textContent
-      );
-      const profile = {
-        name,
-        avatar,
-        posts,
-        following,
-        followers,
-        description,
-        personalLink,
-      };
-      console.log({profile});
-    } catch (error) {}
+
+    let personalLink = await page
+      .$eval(".-vDIg > a:last-child", (el) => el.textContent)
+      .catch((err) => {});
+    const profile = {
+      name,
+      avatar,
+      posts,
+      following,
+      followers,
+      description,
+      personalLink,
+    };
+    console.log({profile});
   }
 
   // await browser.close();
