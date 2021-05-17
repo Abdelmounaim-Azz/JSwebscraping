@@ -9,7 +9,10 @@ const USERNAME = "azz.sahafrica";
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
   await inputs[1].type(process.env.PASSWORD);
-  const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
+  // const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
+  const loginBtn = await page.$x(
+    "/html/body/div[2]/section/main/article/div[2]/div[1]/div/form/div/div[3]"
+  );
   loginBtn.click();
 
   // await browser.close();
