@@ -9,11 +9,11 @@ const USERNAME = "azz.sahafrica";
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
   await inputs[1].type(process.env.PASSWORD);
-  // const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
-  const loginBtn = await page.$x(
-    "/html/body/div[2]/section/main/article/div[2]/div[1]/div/form/div/div[3]"
-  );
-  loginBtn[0].click();
-
+  const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
+  await loginBtn.click();
+  await page.waitForTimeout(3000);
+  await page.goto(`https://instagram.com/${process.env.PROFILE}`);
+  await (await page.$("article a")).click();
+  await (await page.$$("button")[2]).click();
   // await browser.close();
 })();
