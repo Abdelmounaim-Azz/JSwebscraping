@@ -30,7 +30,12 @@ const USERNAME = "azz.sahafrica";
       "header li:nth-child(3)",
       (el) => el.textContent
     );
-    console.log(posts, followers, following);
+    const name = await page.$eval("header h1", (el) => el.textContent);
+    const description = await page.$eval(
+      "header span:nth-child(3)",
+      (el) => el.textContent
+    );
+    console.log(avatar, posts, followers, following, name, description);
   }
 
   // await browser.close();
