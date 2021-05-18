@@ -59,7 +59,7 @@ const USERNAME = "azz.sahafrica";
   }
   const sheet = new Sheet();
   await sheet.load();
-  const oldProfiles = await sheet.getRows(0);
+  const oldProfiles = await sheet.getRows();
   for (let oldProfile of oldProfiles) {
     if (PROFILES.includes(oldProfile[0].username)) {
       await oldProfile.delete();

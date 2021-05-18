@@ -17,8 +17,8 @@ module.exports = class Sheet {
 
     await this.doc.loadInfo();
   }
-  async addSheet(title,headerValues) {
-    await this.doc.addSheet({title,headerValues});
+  async addSheet(title, headerValues) {
+    await this.doc.addSheet({title, headerValues});
     //last sheet created
     return this.doc.sheetsByIndex.length - 1;
   }
@@ -26,8 +26,8 @@ module.exports = class Sheet {
     const sheet = this.doc.sheetsByIndex[i];
     await sheet.addRows(rows);
   }
-  async getRows(i) {
-    const sheet = this.doc.sheetsByIndex[i];
+  async getRows() {
+    const sheet = this.doc.sheetsByIndex[0];
     const rows = await sheet.getRows();
     return rows;
   }
