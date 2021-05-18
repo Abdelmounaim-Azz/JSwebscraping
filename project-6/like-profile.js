@@ -4,7 +4,6 @@ const USERNAME = "azz.sahafrica";
 (async function () {
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
-  const PROFILES = ["shqk_06", "clea10.07"];
   await page.goto("https://instagram.com");
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
