@@ -66,5 +66,5 @@ const USERNAME = "azz.sahafrica";
     }
   }
   await sheet.addRows(profiles, 0);
-  // await browser.close();
+  await browser.close();
 })();
