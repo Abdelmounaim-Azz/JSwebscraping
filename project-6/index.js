@@ -16,14 +16,13 @@ const USERNAME = "azz.sahafrica";
   await inputs[1].type(process.env.PASSWORD);
   const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
   await loginBtn.click();
-  const PROFILES = ["rosenamajunas", "amazonwebservices"];
   //wait for page loading
   await page.waitForNavigation();
   let profiles = [];
   const sheet = new Sheet();
   await sheet.load();
-  const PROFILES = (await sheet.getRows(0)).map((row) => row.profile);
-  for (let PROFILE of PROFILES) {
+  const USERNAMES = (await sheet.getRows(0)).map((row) => row.profile);
+  for (let PROFILE of USERNAMES) {
     await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
     const avatar = await page
