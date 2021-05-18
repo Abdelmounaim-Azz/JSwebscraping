@@ -45,6 +45,7 @@ const USERNAME = "azz.sahafrica";
       .$eval(".-vDIg > a:last-child", (el) => el.textContent)
       .catch((err) => {});
     const profile = {
+      username: PROFILE,
       name,
       avatar,
       posts,
