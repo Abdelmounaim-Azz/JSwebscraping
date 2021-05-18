@@ -13,14 +13,12 @@ const USERNAME = "azz.sahafrica";
   await loginBtn.click();
   //wait for page loading
   await page.waitForNavigation();
-  for (let profile of PROFILES) {
-    await page.goto(`https://instagram.com/${process.env.PROFILE}`);
-    await page.waitForSelector("article a");
-    await (await page.$("article a")).click();
-    await page.waitForTimeout(2000);
-    const likeBtn = await page.$$("article button");
-    await likeBtn[3].click();
-  }
+  await page.goto(`https://instagram.com/${process.env.PROFILE}`);
+  await page.waitForSelector("article a");
+  await (await page.$("article a")).click();
+  await page.waitForTimeout(2000);
+  const likeBtn = await page.$$("article button");
+  await likeBtn[3].click();
 
   // await browser.close();
 })();
