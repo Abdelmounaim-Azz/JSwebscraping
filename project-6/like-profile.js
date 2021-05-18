@@ -4,6 +4,7 @@ const USERNAME = "azz.sahafrica";
 (async function () {
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
+  const PROFILES = ["shqk_06", "clea10.07"];
   await page.goto("https://instagram.com");
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
@@ -13,11 +14,14 @@ const USERNAME = "azz.sahafrica";
   await loginBtn.click();
   //wait for page loading
   await page.waitForNavigation();
-  await page.goto(`https://instagram.com/${process.env.PROFILE}`);
-  await page.waitForSelector("article a");
-  await (await page.$("article a")).click();
-  await page.waitForTimeout(2000);
-  const likeBtn = await page.$$("article button");
-  await likeBtn[3].click();
+  for (let profile of PROFILES) {
+    await page.goto(`https://instagram.com/${process.env.PROFILE}`);
+    await page.waitForSelector("article a");
+    await (await page.$("article a")).click();
+    await page.waitForTimeout(2000);
+    const likeBtn = await page.$$("article button");
+    await likeBtn[3].click();
+  }
+
   // await browser.close();
 })();
