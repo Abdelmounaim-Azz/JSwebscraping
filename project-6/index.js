@@ -1,7 +1,10 @@
 const puppeteer = require("puppeteer");
+const Sheet = require("./utils/Sheet");
 require("dotenv").config();
 const USERNAME = "azz.sahafrica";
 (async function () {
+  const sheet = new Sheet();
+  await sheet.load();
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   await page.goto("https://instagram.com");
@@ -54,7 +57,7 @@ const USERNAME = "azz.sahafrica";
       description,
       personalLink,
     };
-    console.log({profile});
+    await sheet.addRows(profile);
   }
 
   // await browser.close();
