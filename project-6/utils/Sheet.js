@@ -22,12 +22,12 @@ module.exports = class Sheet {
     //last sheet created
     return this.doc.sheetsByIndex.length - 1;
   }
-  async addRows(rows) {
-    const sheet = this.doc.sheetsByIndex[0];
+  async addRows(rows, i) {
+    const sheet = this.doc.sheetsByIndex[i];
     await sheet.addRows(rows);
   }
-  async getRows() {
-    const sheet = this.doc.sheetsByIndex[0];
+  async getRows(i) {
+    const sheet = this.doc.sheetsByIndex[i];
     const rows = await sheet.getRows();
     return rows;
   }
