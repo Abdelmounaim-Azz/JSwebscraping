@@ -22,7 +22,7 @@ const USERNAME = "azz.sahafrica";
   let profiles = [];
   const sheet = new Sheet();
   await sheet.load();
-  const PROFILES = await sheet.getRows(0);
+  const PROFILES = (await sheet.getRows(0)).map((row) => row.profile);
   for (let PROFILE of PROFILES) {
     await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
