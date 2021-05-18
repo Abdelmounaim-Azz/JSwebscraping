@@ -20,6 +20,9 @@ const USERNAME = "azz.sahafrica";
   //wait for page loading
   await page.waitForNavigation();
   let profiles = [];
+  const sheet = new Sheet();
+  await sheet.load();
+  const PROFILES = await sheet.getRows(0);
   for (let PROFILE of PROFILES) {
     await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
@@ -57,8 +60,6 @@ const USERNAME = "azz.sahafrica";
     };
     profiles.push(profile);
   }
-  const sheet = new Sheet();
-  await sheet.load();
   let oldProfiles = await sheet.getRows(1);
   for (let oldProfile of oldProfiles) {
     if (PROFILES.includes(oldProfile.username)) {
