@@ -9,11 +9,8 @@ const USERNAME = "azz.sahafrica";
     console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
     browser.close();
   });
-  page.setViewport({width: 1366, height: 768});
-  await page.waitForTimeout(1000);
-  await page.goto("https://instagram.com", {
-    waitUntil: "networkidle0",
-  });
+  await page.goto("https://instagram.com");
+  await page.waitForSelector("input");
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
   await inputs[1].type(process.env.PASSWORD);
