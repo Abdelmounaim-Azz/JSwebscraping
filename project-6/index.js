@@ -3,7 +3,7 @@ const Sheet = require("./utils/Sheet");
 require("dotenv").config();
 const USERNAME = "azz.sahafrica";
 (async function () {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   process.on("unhandledRejection", (reason, p) => {
     console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
@@ -11,8 +11,9 @@ const USERNAME = "azz.sahafrica";
   });
   page.setViewport({width: 1366, height: 768});
   await page.waitForTimeout(1000);
-  await page.goto("https://instagram.com", {waitUntil: "networkidle2"});
-  await page.waitForSelector("input");
+  await page.goto("https://instagram.com", {
+    waitUntil: "networkidle0",
+  });
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
   await inputs[1].type(process.env.PASSWORD);
