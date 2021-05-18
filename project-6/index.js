@@ -10,7 +10,7 @@ const USERNAME = "azz.sahafrica";
     browser.close();
   });
   page.setViewport({width: 1366, height: 768});
-  await sleep(1000);
+  await page.waitForTimeout(1000);
   await page.goto("https://instagram.com", {waitUntil: "networkidle2"});
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
