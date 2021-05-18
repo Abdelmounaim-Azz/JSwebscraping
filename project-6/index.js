@@ -3,9 +3,15 @@ const Sheet = require("./utils/Sheet");
 require("dotenv").config();
 const USERNAME = "azz.sahafrica";
 (async function () {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://instagram.com");
+  process.on("unhandledRejection", (reason, p) => {
+    console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
+    browser.close();
+  });
+  page.setViewport({width: 1366, height: 768});
+  await sleep(1000);
+  await page.goto("https://instagram.com", {waitUntil: "networkidle2"});
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
