@@ -16,12 +16,7 @@ const USERNAME = "azz.sahafrica";
   await inputs[1].type(process.env.PASSWORD);
   const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
   await loginBtn.click();
-  const PROFILES = [
-    "rosenamajunas",
-    "jordan.b.peterson",
-    "amazonwebservices",
-    "hamza_aithou",
-  ];
+  const PROFILES = ["rosenamajunas", "jordan.b.peterson", "amazonwebservices"];
   //wait for page loading
   await page.waitForNavigation();
   let profiles = [];
@@ -64,6 +59,12 @@ const USERNAME = "azz.sahafrica";
   }
   const sheet = new Sheet();
   await sheet.load();
+  const oldProfiles = await sheet.getRows(0);
+  for (let oldProfile of oldProfiles) {
+    if (PROFILES.includes(oldProfile.username)) {
+      await oldProfile.delete();
+    }
+  }
   await sheet.addRows(profiles, 0);
   // await browser.close();
 })();
