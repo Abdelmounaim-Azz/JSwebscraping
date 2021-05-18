@@ -61,10 +61,11 @@ const USERNAME = "azz.sahafrica";
   await sheet.load();
   const oldProfiles = await sheet.getRows();
   for (let oldProfile of oldProfiles) {
-    if (PROFILES.includes(oldProfile[0].username)) {
+    if (PROFILES.includes(oldProfile.username)) {
       await oldProfile.delete();
+      console.log(`${oldProfile.username} row got deleted`);
     }
   }
-  await sheet.addRows(profiles, 0);
+  await sheet.addRows(profiles);
   await browser.close();
 })();
