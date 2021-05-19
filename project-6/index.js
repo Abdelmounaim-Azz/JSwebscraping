@@ -9,14 +9,13 @@ const USERNAME = "jhsyteel";
     console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
     browser.close();
   });
-  await page.goto("https://instagram.com");
+  await page.goto("https://instagram.com", {waitUntil: "load", timeout: 0});
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
   await inputs[1].type(process.env.PASSWORD);
-  const loginBtn = (await page.$$("button"))[1]; //select the returned value of the promise.
+  const loginBtn = (await page.$$("button"))[1];
   await loginBtn.click();
-  //wait for page loading
   await page.waitForNavigation();
   let profiles = [];
   const sheet = new Sheet();
