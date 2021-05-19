@@ -9,7 +9,7 @@ const USERNAME = "jhsyteel";
     console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
     browser.close();
   });
-  await page.goto("https://instagram.com", {waitUntil: "load", timeout: 0});
+  await page.goto("https://instagram.com");
   await page.waitForSelector("input");
   const inputs = await page.$$("input");
   await inputs[0].type(USERNAME);
@@ -22,10 +22,7 @@ const USERNAME = "jhsyteel";
   await sheet.load();
   const USERNAMES = (await sheet.getRows(0)).map((row) => row.profile);
   for (let PROFILE of USERNAMES) {
-    await page.goto(`https://instagram.com/${PROFILE}`, {
-      waitUntil: "load",
-      timeout: 0,
-    });
+    await page.goto(`https://instagram.com/${PROFILE}`);
     await page.waitForSelector("img");
     const avatar = await page
       .$eval("img", (el) => el.getAttribute("src"))
