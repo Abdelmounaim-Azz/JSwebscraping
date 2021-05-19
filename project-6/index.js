@@ -59,11 +59,10 @@ const USERNAME = "jhsyteel";
     };
     profiles.push(profile);
   }
-  let oldProfiles = await sheet.getRows(1);
-  for (let oldProfile of oldProfiles) {
-    if (USERNAMES.includes(oldProfile.username)) {
-      await oldProfile.delete();
-      console.log(`${oldProfile.username} row got deleted`);
+  let oldProfile = await sheet.getRows(1);
+  for (let i = oldProfile.length - 1; i >= 0; i--) {
+    if (USERNAMES.includes(oldProfile[i].username)) {
+      await oldProfile[i].delete();
     }
   }
   await sheet.addRows(profiles, 1);
