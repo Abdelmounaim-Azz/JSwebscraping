@@ -22,7 +22,10 @@ const USERNAME = "jhsyteel";
   await sheet.load();
   const USERNAMES = (await sheet.getRows(0)).map((row) => row.profile);
   for (let PROFILE of USERNAMES) {
-    await page.goto(`https://instagram.com/${PROFILE}`);
+    await page.goto(`https://instagram.com/${PROFILE}`, {
+      waitUntil: "load",
+      timeout: 0,
+    });
     await page.waitForSelector("img");
     const avatar = await page
       .$eval("img", (el) => el.getAttribute("src"))
