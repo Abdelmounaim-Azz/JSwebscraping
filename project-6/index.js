@@ -61,7 +61,7 @@ const USERNAME = "jhsyteel";
   }
   let oldProfiles = await sheet.getRows(1);
   for (let oldProfile of oldProfiles) {
-    if (PROFILES.includes(oldProfile.username)) {
+    if (USERNAMES.includes(oldProfile.username)) {
       await oldProfile.delete();
       console.log(`${oldProfile.username} row got deleted`);
     }
